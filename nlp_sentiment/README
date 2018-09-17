@@ -1,0 +1,3 @@
+install kaggle
+copy kaggle.conf to kaggle dir
+kaggle competitions download -c movie-review-sentiment-analysis-kernels-only
