@@ -1,0 +1,3 @@
+1. input shape should be (num_smaple, num_feature), out_put_shape (num_sample, )
+2. use clf.decision_function to get the decision curve
+3. generate a grid matrix, get the vaule and plot

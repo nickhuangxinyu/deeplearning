@@ -1,16 +1,12 @@
 from sklearn import preprocessing 
 import numpy as np
 
-# 将资料分割成train与test的模块
 from sklearn.model_selection import train_test_split
 
-# 生成适合做classification资料的模块
 from sklearn.datasets.samples_generator import make_classification 
 
-# Support Vector Machine中的Support Vector Classifier
 from sklearn.svm import SVC 
 
-# 可视化数据的模块
 import matplotlib.pyplot as plt 
 
 X, y = make_classification(
@@ -21,12 +17,19 @@ X, y = make_classification(
 X = preprocessing.scale(X)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-clf = SVC()
+clf = SVC(kernel='rbf')
 clf.fit(X_train, y_train)
 print(clf.score(X_test, y_test))
 sv = clf.support_vectors_
 
-#可视化数据
+XX, YY = np.mgrid[X[:, 0].min():X[:, 0].max(), X[:, 1].min():X[:, 1].max()]
+XX, YY = np.meshgrid(np.arange(X[:, 0].min(), X[:,0].max(), 0.01), np.arange(X[:, 1].min(), X[:,1].max(), 0.6))
+Z = clf.decision_function(np.c_[XX.ravel(), YY.ravel()]).reshape(XX.shape)
+Z = clf.predict(np.c_[XX.ravel(), YY.ravel()]).reshape(XX.shape)
+
+plt.pcolormesh(XX, YY, Z > 0, cmap=plt.cm.Paired)
+plt.contour(XX, YY, Z, colors=['k', 'k', 'k'])
+
 plt.scatter(X[:, 0], X[:, 1], c=y)
 plt.scatter(sv[:, 0], sv[:, 1], marker='x')
 plt.show()
