@@ -52,7 +52,8 @@ y = iris.target
 C = 1.0  # SVM regularization parameter
 models = (svm.SVC(kernel='linear', C=C),
           svm.LinearSVC(C=C),
-          svm.SVC(kernel='rbf', gamma=0.7, C=C),
+          svm.LinearSVC(C=0.1),
+          #svm.SVC(kernel='rbf', gamma=0.7, C=C),
           svm.SVC(kernel='poly', degree=3, C=C))
 models = (clf.fit(X, y) for clf in models)
 
@@ -72,7 +73,6 @@ xx, yy = make_meshgrid(X0, X1)
 for clf, title, ax in zip(models, titles, sub.flatten()):
     plot_contours(ax, clf, xx, yy,
                   cmap=plt.cm.coolwarm, alpha=0.8)
-    '''
     ax.scatter(X0, X1, c=y, cmap=plt.cm.coolwarm, s=20, edgecolors='k')
     ax.set_xlim(xx.min(), xx.max())
     ax.set_ylim(yy.min(), yy.max())
@@ -81,6 +81,5 @@ for clf, title, ax in zip(models, titles, sub.flatten()):
     ax.set_xticks(())
     ax.set_yticks(())
     ax.set_title(title)
-    '''
 
 plt.show()
