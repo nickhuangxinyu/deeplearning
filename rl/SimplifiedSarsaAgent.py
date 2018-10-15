@@ -196,9 +196,13 @@ class SarsaAgent(object):
                 s1 = int(self._get_state_name(s1))
                 self._assert_state_in_Q(s1, randomized = False)
                 # 在下行代码中添加参数use_epsilon = False即变成Q学习算法
+                # real action
                 a1 = self.performPolicy(s1, num_episode, use_epsilon=True)
+                # update action
+                a2 = self.performPolicy(s1, num_episode, use_epsilon=False)
                 old_q = self._get_Q(s0, a0)
-                q_prime = self._get_Q(s1, a1)
+                # 
+                q_prime = self._get_Q(s1, a2)
                 td_target = r1 + gamma * q_prime
                 #alpha = alpha / num_episode
                 new_q = old_q + alpha * (td_target - old_q)
@@ -236,7 +240,7 @@ def main():
     #env = gym.make("WindyGridWorld-v0")
     #directory = "/home/qiang/workspace/reinforce/python/monitor"
     
-    env = gym.wrappers.Monitor(env, directory, force=True)
+    #env = gym.wrappers.Monitor(env, directory, force=True)
     #env = WindyGridWorld()
     env = SimpleGridWorld()
     agent = SarsaAgent(env)
