@@ -56,7 +56,7 @@ class SarsaAgent(object):
     
     # using simple decaying epsilon greedy exploration
     def _curPolicy(self, s, episode_num, use_epsilon):
-        epsilon = 1.00 / (episode_num+1)
+        epsilon = max(1.00 / (episode_num+1), 0.1)
         #epsilon = 0.1
         Q_s = self.Q[int(s)]
         str_act = "unknown"
@@ -246,7 +246,6 @@ def main():
     agent = SarsaAgent(env)
     env.reset()
     print("Learning...")  
-    '''
     agent.mc_learning(gamma=0.9, 
                    alpha=0.1, 
                    max_episode_num=300)
@@ -254,6 +253,7 @@ def main():
     agent.learning(gamma=0.9, 
                    alpha=0.1, 
                    max_episode_num=300)
+    '''
     env.close()
 
 
