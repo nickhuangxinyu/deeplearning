@@ -1,0 +1,4 @@
+focal loss用来解决数据标签不均衡：
+baseline是交叉熵
+pilog(pi)
+在pi上加上幂次，使得大占比的样本对损失函数的权重降低

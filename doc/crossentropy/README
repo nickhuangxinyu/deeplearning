@@ -1,0 +1,8 @@
+cross-entropy is classification problem loss:
+交叉熵可以由两种方式解释：
+1、KL散度= sum over i of p(xi)log(p(xi)/q(xi))
+         = H(p(x)) + p(xi)log(q(xi))
+第二项就是交叉熵，p(x)是真实的数据分布，不变，所以KL散度等价于交叉熵
+2.logistic分类，通过最大化似然函数可以得到二分类的交叉熵表达式
+
+https://blog.csdn.net/tsyccnh/article/details/79163834
