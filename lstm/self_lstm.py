@@ -1,4 +1,7 @@
 import numpy as np
+import time
+
+start=time.time()
 
 seq = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -84,3 +87,5 @@ for i in d:
   print(X_valid[i])
   print(np.argmax(label_valid[i]))
   print(a[i])
+
+print('cost', time.time()-start)

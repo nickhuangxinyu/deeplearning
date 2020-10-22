@@ -1,3 +1,6 @@
+import time
+start = time.time()
+
 from tensorflow import keras
 from tensorflow.keras import layers
 
@@ -29,12 +32,13 @@ model.summary()
 
 history = model.fit(x_train, y_train, batch_size=64, epochs=5,validation_split=0.1)
 
-import matplotlib.pyplot as plt
-plt.plot(history.history['accuracy'])
-plt.plot(history.history['val_accuracy'])
-plt.legend(['training', 'valivation'], loc='upper left')
-plt.show()
+#import matplotlib.pyplot as plt
+#plt.plot(history.history['accuracy'])
+#plt.plot(history.history['val_accuracy'])
+#plt.legend(['training', 'valivation'], loc='upper left')
+#plt.show()
 
+'''
 def lstm_model():
     model = keras.Sequential([
         layers.Embedding(input_dim=30000, output_dim=32, input_length=maxlen),
@@ -50,7 +54,9 @@ model.summary()
 
 history = model.fit(x_train, y_train, batch_size=64, epochs=5,validation_split=0.1)
 
-plt.plot(history.history['accuracy'])
-plt.plot(history.history['val_accuracy'])
-plt.legend(['training', 'valivation'], loc='upper left')
-plt.show()
+#plt.plot(history.history['accuracy'])
+#plt.plot(history.history['val_accuracy'])
+#plt.legend(['training', 'valivation'], loc='upper left')
+#plt.show()
+'''
+print('cost', time.time()-start)
